@@ -1,7 +1,12 @@
 import { pool } from "../db.js";
 
 //estos son los controladores
-export const getEmployees = (req, res) => res.send("obteniendo empleados");
+
+
+export const getEmployees = async (req, res) => {// esto es para obtener todos los empleados
+    const [rows] = await pool.query('SELECT * FROM employee');
+    res.json(rows);
+};
 
 export const createEmployee = async (req, res) => {
     const { name, salary } = req.body;

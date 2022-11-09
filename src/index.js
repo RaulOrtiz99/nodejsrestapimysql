@@ -10,7 +10,7 @@ app.listen(3000);
 app.use(express.json());
 
 //TODO: ROUTES 
-app.use(employeesRoutes);
+app.use('/api', employeesRoutes);
 app.use(indexRoutes);
 
 
