@@ -2,6 +2,21 @@ import { pool } from "../db.js";
 
 //estos son los controladores
 
+export const deleteEmployee = async (req, res) => {
+  const [result] = await pool.query("DELETE FROM employee WHERE id= ?", [
+    req.params.id,
+  ]);
+  console.log(result);
+
+  if (result.affectedRows <= 0) {
+    return res.status(404).json({
+      message: "Employee not found",
+    });
+  }
+
+  res.sendStatus(204);
+};
+
 export const getEmployees = async (req, res) => {
   // esto es para obtener todos los empleados
   const [rows] = await pool.query("SELECT * FROM employee");
@@ -35,5 +50,3 @@ export const createEmployee = async (req, res) => {
   });
 };
 export const updateEmployee = (req, res) => res.send("actualizando empleados");
-
-export const deleteEmployee = (req, res) => res.send("eliminando empleados");
