@@ -1,10 +1,13 @@
-import express from "express";
+import express from "express"; // TODO ASI SE IMPORTA EXPRESS
 import employeesRoutes from './routes/employes.routes.js';
 import indexRoutes from "./routes/index.routes.js";
 
 const app = express();
 
 app.listen(3000);
+
+//ESTO ES PARA LEER UN JSON 
+app.use(express.json());
 
 //TODO: ROUTES 
 app.use(employeesRoutes);
